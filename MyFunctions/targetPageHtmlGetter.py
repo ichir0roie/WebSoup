@@ -9,47 +9,58 @@ from selenium.common.exceptions import TimeoutException
 
 import random
 
-with open("./Data/pageUrls.csv", "r", encoding="utf-8")as f:
-    reader = csv.reader(f)
-    targetUrls=[row for row in reader]
+import os
 
-from MyFunctions import celeniuming
+def targetPageHtmlGetter():
+    with open("./Data/pageUrls.csv", "r", encoding="utf-8")as f:
+        reader = csv.reader(f)
+        targetUrls=[row for row in reader]
 
-driver= celeniuming.getLoggedDriver()
+    from MyFunctions import celeniuming
 
-driver.get("https://www.wantedly.com/projects/")
-time.sleep(random.randint(1,3))
+    driver= celeniuming.getLoggedDriver()
 
-
-startPlace=127
-
-for c,tar in enumerate(targetUrls[startPlace:]):
-    name=tar[0].replace(" ","")\
-        .replace("\n","")\
-        .replace("\u3000","")\
-        .replace("|","")\
-        .replace("/","")\
-        .replace(".","。")\
-        .replace("！","")\
-        .replace("?","")\
-        .replace("\"","")
-    url=tar[1]
-
-    print(name)
-    print(url)
-
-    driver.get(url)
-
+    driver.get("https://www.wantedly.com/projects/")
     time.sleep(random.randint(1,3))
-    try:
-        WebDriverWait(driver,5).until(EC.presence_of_element_located((By.CLASS_NAME,"js-descriptions ")))
-    except TimeoutException as te:
-        print("can't get page")
+
+    if not os.path.exists("Data/Htmls"):
+        os.mkdir("Data/Htmls")
+
+    startPlace=0
+
+    for c,tar in enumerate(targetUrls[startPlace:]):
+        name=tar[0].replace(" ","")\
+            .replace("\n","")\
+            .replace("\u3000","")\
+            .replace("|","")\
+            .replace("/","")\
+            .replace(".","。")\
+            .replace("！","")\
+            .replace("?","")\
+            .replace("\"","")
+        url=tar[1]
+
         print(name)
         print(url)
-        print("++++++++++++++++++++++++++\n")
-        continue
-    print(c+startPlace)
-    html=driver.page_source
-    with open("./Data/Htmls/"+name+".html","w",encoding="utf-8")as f:
-        f.write(html)
+
+        driver.get(url)
+
+        time.sleep(random.randint(1,3))
+        try:
+            WebDriverWait(driver,5).until(EC.presence_of_element_located((By.CLASS_NAME,"js-descriptions ")))
+        except TimeoutException as te:
+            print("can't get page")
+            print(name)
+            print(url)
+            print("++++++++++++++++++++++++++\n")
+            continue
+        print(c+startPlace)
+        html=driver.page_source
+        with open("./Data/Htmls/"+name+".html","w",encoding="utf-8")as f:
+            f.write(html)
+
+
+if __name__ == '__main__':
+    targetPageHtmlGetter()
+
+

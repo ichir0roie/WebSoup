@@ -21,6 +21,5 @@ def getLoggedDriver():
 
     return driver
 
-
 if __name__=="__main__":
     getLoggedDriver()
