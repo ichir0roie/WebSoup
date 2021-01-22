@@ -3,6 +3,7 @@ MyFunctions内のスクリプトを実行するときは、実行箇所をWebSou
 以下のオブジェクトを作成
 
 以下のフォルダに対応するchoromeDriver.exeを配置する。（他のexploerでもいいかも)
+
 Data/
 
 
