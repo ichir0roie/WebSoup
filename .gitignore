@@ -3,3 +3,5 @@
 /Data/loginInfo-a
 /Data/old/
 /Data/*.exe
+*.pickle
+*.csv

@@ -21,7 +21,7 @@ def targetPageHtmlGetter():
     driver= celeniuming.getLoggedDriver()
 
     driver.get("https://www.wantedly.com/projects/")
-    time.sleep(random.randint(1,3))
+    time.sleep(random.randint(1,5))
 
     if not os.path.exists("Data/Htmls"):
         os.mkdir("Data/Htmls")
@@ -45,9 +45,9 @@ def targetPageHtmlGetter():
 
         driver.get(url)
 
-        time.sleep(random.randint(1,3))
+        time.sleep(random.randint(1,2))
         try:
-            WebDriverWait(driver,5).until(EC.presence_of_element_located((By.CLASS_NAME,"js-descriptions ")))
+            WebDriverWait(driver,60).until(EC.presence_of_element_located((By.CLASS_NAME,"js-descriptions ")))
         except TimeoutException as te:
             print("can't get page")
             print(name)

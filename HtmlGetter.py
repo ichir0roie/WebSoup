@@ -1,15 +1,15 @@
 
+if __name__ == '__main__':
 
-import MyFunctions.wantWantedly as ww
+    # targetPath="https://www.wantedly.com/projects?type=mixed&page=1&occupation_types%5B%5D=jp__engineering&hiring_types%5B%5D=mid_career&keywords%5B%5D=%E6%9C%AA%E7%B5%8C%E9%A8%93"
+    #
+    # import MyFunctions.wantWantedly as ww
+    #
+    # ww.wantedWantedly(targetPath)
 
-ww.wantedWantedly(
-    "https://www.wantedly.com/projects?type=mixed&page=1&occupation_types%5B%5D=jp__engineering&hiring_types%5B%5D=mid_career&keywords%5B%5D=%E3%83%99%E3%83%B3%E3%83%81%E3%83%A3%E3%83%BC")
+    import MyFunctions.targetPageHtmlGetter as tphg
 
-import MyFunctions.targetPageHtmlGetter as tphg
-
-tphg.targetPageHtmlGetter()
-
-
+    tphg.targetPageHtmlGetter()
 
 
 
