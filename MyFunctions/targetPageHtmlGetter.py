@@ -47,7 +47,7 @@ def targetPageHtmlGetter():
 
         time.sleep(random.randint(1,2))
         try:
-            WebDriverWait(driver,60).until(EC.presence_of_element_located((By.CLASS_NAME,"js-descriptions ")))
+            WebDriverWait(driver,5).until(EC.presence_of_element_located((By.CLASS_NAME,"js-descriptions ")))
         except TimeoutException as te:
             print("can't get page")
             print(name)

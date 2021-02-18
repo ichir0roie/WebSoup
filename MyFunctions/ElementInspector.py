@@ -9,7 +9,7 @@ delimiter=","
 
 outputSortedPath="./Data/SortedElementsData.csv"
 
-def getElementsFromCsv():
+def getElementsFromHtml():
     startPlace=0
     for c,page in enumerate(files[startPlace:]):
         print(c+startPlace)
@@ -56,6 +56,7 @@ def getElementsFromCsv():
             "web",
             "ベンチャー",
             "スタートアップ",
+            "ギター",
         ]
 
         hitsKeyWords=[]
@@ -96,6 +97,6 @@ def getUrls():
         print(i)
 
 if __name__ == '__main__':
-    getElementsFromCsv()
+    getElementsFromHtml()
     sortCsvData()
     #getUrls()

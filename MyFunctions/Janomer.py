@@ -8,6 +8,7 @@ import csv
 
 import  unicodedata
 
+
 def getHtmlPaths():
     files=glob.glob("Data/Htmls/*.html")
     return files
@@ -20,6 +21,7 @@ def getHtmlTextFromPath(path):
 
 
 def getTokenFromHtml(htmlText):
+    torkenizer = Tokenizer()
     soup=sp.getSoupByHtml(htmlText)
     text=soup.text.replace("\n","")
 
@@ -92,12 +94,10 @@ def searchModernTech():
     #     writer=csv.writer(f)
     #     writer.writerows(next)
 
-torkenizer=None
 if __name__ == '__main__':
-    torkenizer=Tokenizer()
 
 
-    #getAllTokenAndSave()
-    #RemoveEnter()
+    getAllTokenAndSave()
+    RemoveEnter()
 
     searchModernTech()

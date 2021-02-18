@@ -1,6 +1,13 @@
 import time
 from selenium import webdriver
 
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+
+import random
+
 with open("./Data/loginInfo","r",encoding="utf-8")as f:
     mail=f.readline().replace("\n","")
     paWd=f.readline().replace("\n","")
@@ -18,6 +25,12 @@ def getLoggedDriver():
 
     btSubmit = driver.find_element_by_id("next-step-button")
     btSubmit.click()
+
+    time.sleep(random.randint(1, 2))
+    try:
+        WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.CLASS_NAME, "new-ui-modal-full-page-wrapper")))
+    except TimeoutException as te:
+        print("can't get page")
 
     return driver
 
